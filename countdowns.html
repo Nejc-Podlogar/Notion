@@ -1,1 +1,90 @@
+<html>
 
+<style>
+    .fullContainer {
+        display: flex;
+        width: min-content;
+        padding: 20px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        background: transparent;
+        color: white;
+    }
+
+    .simpleContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
+    }
+
+    .counterDownContainer{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding-left: 0;
+    }
+    .number{
+        font-size: 50px;
+    }
+    #word{
+        text-transform: uppercase;
+    }
+    .heading{
+        font-size: 20px;
+        text-transform: capitalize;
+    }
+</style>
+
+
+<div class="fullContainer">
+    <p class="heading">Days until my birthday</p>
+    <ul class="counterDownContainer">
+        <li class="simpleContainer">
+            <div class="number" id="days"></div>
+            <div id="word">Days</div>
+        </li>
+        <li class="simpleContainer">
+            <div class="number" id="hours"></div>
+            <div id="word">Hours</div>
+        </li>
+        <li class="simpleContainer">
+            <div class="number" id="minutes"></div>
+            <div id="word">Minutes</div>
+        </li>
+        <li class="simpleContainer">
+            <div class="number" id="seconds"></div>
+            <div id="word">Seconds</div>
+        </li>
+    </ul>
+</div>
+
+<script>
+    const second = 1000,
+        minute = second * 60,
+        hour = minute * 60,
+        day = hour * 24;
+
+    let countDown = new Date('Oct 15, 2020 00:00:00').getTime(),
+        x = setInterval(function () {
+
+            let now = new Date().getTime(),
+                distance = countDown - now;
+
+            document.getElementById('days').innerText = Math.floor(distance / (day)),
+            document.getElementById('hours').innerText = Math.floor((distance % (day)) / (hour)),
+            document.getElementById('minutes').innerText = Math.floor((distance % (hour)) / (minute)),
+            document.getElementById('seconds').innerText = Math.floor((distance % (minute)) / second);
+
+            //do something later when date is reached
+            //if (distance < 0) {
+            //  clearInterval(x);
+            //  'IT'S MY BIRTHDAY!;
+            //}
+
+        }, second)
+</script>
+
+</html>
